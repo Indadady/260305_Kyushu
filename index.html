@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VIP 초청: 북큐슈 3박 4일 온천 & 힐링 투어</title>
     
-    <!-- Google Analytics (GA4) - 추적 ID(G-XXXXXXXXXX)를 발급받아 교체하세요 -->
+    <!-- Google Analytics (GA4) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PFXXXXXX"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-PFXXXXXX'); // 여기에 실제 추적 ID 입력
+      gtag('config', 'G-PFXXXXXX');
     </script>
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="[VIP] 북큐슈 3박 4일 프라이빗 힐링 투어">
     <meta property="og:description" content="유후인, 벳부 온천과 아소의 대자연을 만나는 힐링 여행">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1515238152791-8216bfdf89a7?q=80&w=1472&auto=format&fit=crop">
+    <meta property="og:image" content="https://www.luxurylifestylemag.co.uk/wp-content/uploads/2022/08/Mt-Daisen-Takeda-City-Oita-Azalea.jpg">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -26,11 +26,13 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         body { font-family: 'Noto Sans KR', sans-serif; color: #1e293b; word-break: keep-all; }
+        .font-hand { font-family: 'Nanum Pen Script', cursive; }
+        
         .hero-section {
             position: relative;
             height: 100vh;
@@ -43,8 +45,7 @@
             content: "";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            /* 유후인/아소 느낌의 배경 이미지 */
-            background-image: linear-gradient(rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.7)), url('https://images.unsplash.com/photo-1542051841857-5f90071e7989?q=80&w=1470&auto=format&fit=crop');
+            background-image: linear-gradient(rgba(15, 23, 42, 0.3), rgba(15, 23, 42, 0.6)), url('https://www.luxurylifestylemag.co.uk/wp-content/uploads/2022/08/Mt-Daisen-Takeda-City-Oita-Azalea.jpg');
             background-size: cover;
             background-position: center;
             z-index: -1;
@@ -77,13 +78,61 @@
         }
         .video-thumbnail:hover .play-button { transform: translate(-50%, -50%) scale(1.1); background: #0077be; color: white; }
 
-        /* Floating Memo */
+        /* Floating Memo - Post-it Style */
         #memo-panel {
-            transform: translateY(100%);
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(110%);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         #memo-panel.open {
             transform: translateY(0);
+        }
+        .paper-lines {
+            background-image: linear-gradient(#999 1px, transparent 1px);
+            background-size: 100% 1.5rem;
+            line-height: 1.5rem;
+            background-position-y: 1.5rem;
+            background-color: #fef9c3;
+        }
+        
+        /* Checkbox Custom Style */
+        .custom-checkbox input:checked + div {
+            background-color: #0077be;
+            border-color: #0077be;
+        }
+        .custom-checkbox input:checked + div::after {
+            content: '✔';
+            color: white;
+            font-size: 14px;
+            display: block;
+            text-align: center;
+        }
+        .strikethrough-checked input:checked ~ span {
+            text-decoration: line-through;
+            color: #94a3b8;
+        }
+
+        /* Hotel Card */
+        .hotel-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+        .hotel-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        /* Tab Styles */
+        .tab-btn.active {
+            background-color: #fef9c3; /* Post-it Yellow */
+            border-bottom: 2px solid #eab308;
+            color: #1e293b;
+            font-weight: bold;
+        }
+        .tab-btn {
+            background-color: #f1f5f9;
+            color: #64748b;
         }
     </style>
 </head>
@@ -101,12 +150,14 @@
                 <a href="#schedule" class="text-sm font-bold text-slate-600 hover:text-[#0077be] transition">ITINERARY</a>
                 <a href="#guide" class="text-sm font-bold text-slate-600 hover:text-[#0077be] transition">GUIDE</a>
             </nav>
-            <a href="https://indadady.github.io/TourMaker_profile/" target="_blank" class="bg-navy text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg">상담문의</a>
+            <a href="tel:01053737223" class="bg-navy text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg flex items-center gap-2 hover:bg-slate-700 transition">
+                <i class="fa-solid fa-phone"></i> 이원춘 담당자 문의
+            </a>
         </div>
     </header>
 
     <main>
-        <!-- Hero Section with D-Day -->
+        <!-- Hero Section -->
         <section class="hero-section text-white">
             <div class="container mx-auto px-4 text-center z-10 animate-up">
                 <div class="mb-6">
@@ -164,34 +215,71 @@
             </div>
         </section>
 
-        <!-- Stay Showcase (유카이 리조트/머큐어 등) -->
+        <!-- Stay Showcase (상세 정보 업데이트) -->
         <section id="hotel" class="py-24 bg-navy text-white relative overflow-hidden">
             <div class="container mx-auto px-4 relative z-10">
-                <div class="flex flex-col lg:flex-row items-start gap-16">
-                    <div class="lg:w-1/2">
-                        <span class="text-cyan-400 font-bold tracking-widest text-sm uppercase mb-4 block">Recommended Stay</span>
-                        <h2 class="text-4xl md:text-5xl font-black mb-8 leading-tight">Comfort & Relax<br><span class="text-ocean">프리미엄 온천 리조트</span></h2>
-                        <div class="space-y-6 text-slate-300">
-                            <p class="leading-relaxed font-light">
-                                여행의 피로를 풀어줄 엄선된 숙소를 제공합니다. 히타의 고즈넉함, 벳부의 활기, 무나카타의 여유로움을 만끽하며, 매일 밤 온천욕으로 진정한 쉼을 경험하세요.
-                            </p>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-                                <div class="bg-white/5 p-4 rounded-lg border border-white/10">
-                                    <h4 class="font-bold text-[#0077be] mb-2"><i class="fa-solid fa-bed mr-2"></i>엄선된 호텔</h4>
-                                    <p class="text-xs">히타 루트인, 벳부 유카이 리조트, 머큐어 무나카타 등 지역별 최적의 호텔 선정</p>
-                                </div>
-                                <div class="bg-white/5 p-4 rounded-lg border border-white/10">
-                                    <h4 class="font-bold text-[#0077be] mb-2"><i class="fa-solid fa-utensils mr-2"></i>카이세키 & 뷔페</h4>
-                                    <p class="text-xs">신선한 지역 식재료를 활용한 다채로운 석식 제공 (현지식 및 호텔 뷔페)</p>
-                                </div>
-                            </div>
+                <div class="text-center mb-16">
+                    <span class="text-cyan-400 font-bold tracking-widest text-sm uppercase mb-4 block">Recommended Stay</span>
+                    <h2 class="text-4xl font-black mb-4">Comfort & Relax</h2>
+                    <p class="text-slate-400 max-w-2xl mx-auto">여행의 피로를 풀어줄 엄선된 온천 호텔 & 리조트<br>매일 밤 달라지는 온천과 미식의 즐거움을 경험하세요.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Hotel 1 -->
+                    <div class="hotel-card rounded-2xl overflow-hidden group">
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="https://tse2.mm.bing.net/th/id/OIP.LRz8KpnumcficZjBkYKYDwHaHa?w=474&h=474&c=7&p=0" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="루트인 히타">
+                            <div class="absolute top-4 left-4 bg-ocean text-white text-xs font-bold px-3 py-1 rounded-full">DAY 1</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">루트인 히타 에키마에</h3>
+                            <p class="text-xs text-slate-400 mb-4">Hotel Route-Inn Hita Ekimae</p>
+                            <ul class="space-y-3 text-sm text-slate-300">
+                                <li class="flex items-start"><i class="fa-solid fa-location-dot w-6 text-cyan-400 mt-1"></i> <span>JR 히타역 도보 1분 (최적의 접근성)</span></li>
+                                <li class="flex items-start"><i class="fa-solid fa-hot-tub-person w-6 text-cyan-400 mt-1"></i> <span>라지움 인공온천 대욕장<br><span class="text-xs text-slate-500">(15:00~02:00 / 05:00~10:00)</span></span></li>
+                                <li class="flex items-start"><i class="fa-solid fa-utensils w-6 text-cyan-400 mt-1"></i> <span>조식 30품목 이상 와·양식 뷔페</span></li>
+                                <li class="flex items-start"><i class="fa-solid fa-star w-6 text-yellow-400 mt-1"></i> <span>늦은 도착에도 여유로운 대욕장 이용</span></li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="lg:w-1/2 w-full space-y-4">
-                        <!-- 큐슈 온천 이미지 -->
-                        <img src="https://images.unsplash.com/photo-1596423984028-1e43c68d1840?q=80&w=1000&auto=format&fit=crop" class="w-full h-80 object-cover rounded-2xl shadow-2xl" alt="Onsen Resort">
-                        <img src="https://images.unsplash.com/photo-1572911762198-d748f572836b?q=80&w=1000&auto=format&fit=crop" class="w-full h-64 object-cover rounded-2xl shadow-2xl" alt="Japanese Dinner">
+
+                    <!-- Hotel 2 -->
+                    <div class="hotel-card rounded-2xl overflow-hidden group">
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="https://tse3.mm.bing.net/th/id/OIP.9JM0NsbY05vu5Fnw5AhRBgHaFj?w=474&h=474&c=7&p=0" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="호텔 후게츠">
+                            <div class="absolute top-4 left-4 bg-ocean text-white text-xs font-bold px-3 py-1 rounded-full">DAY 2</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">오에도 온센 모노가타리<br>Premium 호텔 후게츠</h3>
+                            <p class="text-xs text-slate-400 mb-4">구) 유카이리조트 벳부</p>
+                            <ul class="space-y-3 text-sm text-slate-300">
+                                <li class="flex items-start"><i class="fa-solid fa-location-dot w-6 text-cyan-400 mt-1"></i> <span>벳부 온천지구 중심 (IC 5~10분)</span></li>
+                                <li class="flex items-start"><i class="fa-solid fa-water w-6 text-cyan-400 mt-1"></i> <span>개방감 넘치는 옥상 노천탕 보유</span></li>
+                                <li class="flex items-start"><i class="fa-solid fa-bed w-6 text-cyan-400 mt-1"></i> <span>총 96실 규모의 대형 온천 호텔</span></li>
+                                <li class="flex items-start"><i class="fa-solid fa-star w-6 text-yellow-400 mt-1"></i> <span>Premium 등급의 뷔페 식사 제공</span></li>
+                            </ul>
+                        </div>
                     </div>
+
+                    <!-- Hotel 3 -->
+                    <div class="hotel-card rounded-2xl overflow-hidden group">
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="https://tse3.mm.bing.net/th/id/OIP.URL1ZaRlFBn_nJ2wayRKuwHaEN?w=474&h=474&c=7&p=0" class="w-full h-full object-cover group-hover:scale-110 transition duration-700" alt="머큐어 무나카타">
+                            <div class="absolute top-4 left-4 bg-ocean text-white text-xs font-bold px-3 py-1 rounded-full">DAY 3</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">머큐어 후쿠오카<br>무나카타 리조트 & 스파</h3>
+                            <p class="text-xs text-slate-400 mb-4">Mercure Fukuoka Munakata</p>
+                            <ul class="space-y-3 text-sm text-slate-300">
+                                <li class="flex items-start"><i class="fa-solid fa-location-dot w-6 text-cyan-400 mt-1"></i> <span>후쿠오카 근교 힐링 리조트</span></li>
+                                <li class="flex items-start"><i class="fa-solid fa-hot-tub-person w-6 text-cyan-400 mt-1"></i> <span>겐카이 사츠키 온천 (노천암탕 완비)<br><span class="text-xs text-slate-500">(06:00~10:00 / 15:00~23:00)</span></span></li>
+                                <li class="flex items-start"><i class="fa-solid fa-umbrella-beach w-6 text-cyan-400 mt-1"></i> <span>대규모 리조트 시설과 여유로운 휴식</span></li>
+                                <li class="flex items-start"><i class="fa-solid fa-star w-6 text-yellow-400 mt-1"></i> <span>올인클루시브 컨셉의 편안한 스테이</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -241,65 +329,178 @@
         <section class="py-24 bg-slate-900 text-white">
             <div class="container mx-auto px-4 text-center">
                 <h2 class="text-3xl font-black mb-4 uppercase">PREVIEW KYUSHU</h2>
-                <p class="text-slate-400 mb-12">KBS '걸어서 세계속으로'가 전하는 큐슈의 매력</p>
+                <p class="text-slate-400 mb-12">후쿠오카 & 큐슈의 아름다운 영상미 (Fukuoka City Tourism Promotion)</p>
                 <div class="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl">
-                    <!-- KBS 걸어서 세계속으로 - 큐슈 편 -->
-                    <div class="video-thumbnail relative pb-[56.25%]" onclick="playVideo(this, 'plh-JvZ7iJw')">
-                        <img src="https://img.youtube.com/vi/plh-JvZ7iJw/maxresdefault.jpg" class="absolute top-0 left-0 w-full h-full object-cover" alt="Video Thumbnail">
+                    <!-- 후쿠오카 관광 홍보 영상 -->
+                    <div class="video-thumbnail relative pb-[56.25%]" onclick="playVideo(this, 'vWlGcW2NLLo')">
+                        <img src="https://img.youtube.com/vi/vWlGcW2NLLo/maxresdefault.jpg" class="absolute top-0 left-0 w-full h-full object-cover" alt="Video Thumbnail">
                         <div class="play-button"><i class="fa-solid fa-play text-slate-900 text-2xl"></i></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Company Link & Action -->
+        <!-- Company Link & Action (담당자 명함 스타일) -->
         <section class="py-20 bg-[#f8f5f0]">
             <div class="container mx-auto px-4 text-center">
-                <h2 class="text-3xl font-black text-slate-900 mb-8">Reservation Info</h2>
-                <div class="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-lg mb-12">
-                    <div class="flex justify-between items-center border-b border-slate-100 pb-4 mb-4 font-bold">
-                        <span class="text-slate-500">출발일</span>
-                        <span class="text-slate-900">2026년 3월 5일 (목)</span>
+                <h2 class="text-3xl font-black text-slate-900 mb-8">Reservation & Contact</h2>
+                <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-8 items-center justify-center">
+                    
+                    <!-- 여행 정보 요약 -->
+                    <div class="w-full md:w-1/2 bg-white p-8 rounded-xl shadow-lg border-l-4 border-ocean text-left">
+                        <h3 class="font-bold text-xl mb-6 text-slate-800">📌 여행 핵심 정보</h3>
+                        <div class="space-y-4 text-sm">
+                            <div class="flex justify-between border-b border-slate-100 pb-2">
+                                <span class="text-slate-500">출발일</span>
+                                <span class="font-bold text-slate-900">2026년 3월 5일 (목)</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-100 pb-2">
+                                <span class="text-slate-500">항공편</span>
+                                <span class="font-bold text-slate-900">이스타항공 (ZE) 인천 출발</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-100 pb-2">
+                                <span class="text-slate-500">인원</span>
+                                <span class="font-bold text-slate-900">16명 단독 VIP 프라이빗</span>
+                            </div>
+                        </div>
+                        <!-- Disclaimer Added Here -->
+                        <p class="mt-6 text-xs text-slate-400 leading-relaxed border-t border-slate-100 pt-4">
+                            * 상기 일정은 항공 및 현지 사정에 의하여 다소 변경 될 수 있습니다.
+                        </p>
                     </div>
-                    <div class="flex justify-between items-center border-b border-slate-100 pb-4 mb-4 font-bold">
-                        <span class="text-slate-500">이용항공</span>
-                        <span class="text-slate-900">이스타항공 (ZE) 인천 출발</span>
-                    </div>
-                    <div class="flex justify-between items-center border-b border-slate-100 pb-4 font-bold">
-                        <span class="text-slate-500">행사조건</span>
-                        <span class="text-slate-900">16명 단독 VIP 프라이빗</span>
-                    </div>
-                </div>
 
-                <a href="https://indadady.github.io/TourMaker_profile/" target="_blank" class="inline-flex items-center bg-navy text-white px-12 py-5 rounded-sm font-bold text-xl hover:bg-slate-800 transition shadow-xl group">
-                    <i class="fa-solid fa-building-user mr-3 group-hover:text-ocean transition"></i> 투어메이커 상담하기 (회사소개)
-                </a>
+                    <!-- 담당자 명함 -->
+                    <div class="w-full md:w-1/2 bg-navy p-8 rounded-xl shadow-lg text-white text-left relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 p-4 opacity-10">
+                            <i class="fa-solid fa-passport text-9xl"></i>
+                        </div>
+                        <p class="text-cyan-400 font-bold text-xs uppercase tracking-widest mb-2">Travel Specialist</p>
+                        <h3 class="text-3xl font-black mb-1">이원춘 <span class="text-lg font-normal text-slate-400">담당자</span></h3>
+                        <p class="text-slate-400 text-sm mb-6">VIP 투어 기획 및 상담 전담</p>
+                        
+                        <div class="space-y-3">
+                            <a href="tel:01053737223" class="block bg-white text-navy font-bold py-3 px-4 rounded-lg text-center hover:bg-ocean hover:text-white transition shadow-md">
+                                <i class="fa-solid fa-phone mr-2"></i> 010-5373-7223 (전화연결)
+                            </a>
+                            <a href="sms:01053737223" class="block border border-white/30 text-white font-medium py-3 px-4 rounded-lg text-center hover:bg-white/10 transition">
+                                <i class="fa-solid fa-comment-sms mr-2"></i> 문자 문의하기
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </section>
     </main>
 
     <!-- Floating Memo UI -->
     <div class="fixed bottom-6 right-6 z-[60]">
-        <button onclick="toggleMemo()" class="w-14 h-14 bg-ocean text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition active:scale-95">
-            <i class="fa-solid fa-note-sticky text-xl"></i>
+        <button onclick="toggleMemo()" class="group flex items-center justify-center gap-2 bg-yellow-400 text-slate-900 px-6 py-4 rounded-full shadow-2xl hover:bg-yellow-300 transition hover:-translate-y-1 font-bold border-4 border-white">
+            <i class="fa-solid fa-pen-to-square text-xl"></i>
+            <span>여행 메모</span>
         </button>
     </div>
 
     <!-- Memo Panel -->
-    <div id="memo-panel" class="fixed bottom-0 left-0 w-full bg-white z-[70] rounded-t-3xl shadow-[0_-10px_30px_rgba(0,0,0,0.15)] p-6 md:max-w-md md:left-auto md:right-6 md:bottom-24 md:rounded-3xl">
-        <div class="flex justify-between items-center mb-4">
-            <h3 class="font-black text-xl text-slate-900"><i class="fa-solid fa-pen-clip mr-2 text-ocean"></i>My Travel Memo</h3>
-            <button onclick="toggleMemo()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-2xl"></i></button>
+    <div id="memo-panel" class="fixed bottom-24 right-4 md:right-10 w-[90%] md:w-80 bg-[#fef9c3] z-[70] rounded-sm shadow-[5px_5px_15px_rgba(0,0,0,0.2)] p-0 transform rotate-1 transition-transform duration-300 origin-bottom-right border-t-8 border-yellow-200/50">
+        <!-- Pin Effect -->
+        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-red-500 shadow-md z-10 border-2 border-white/50"></div>
+        
+        <!-- Header -->
+        <div class="flex justify-between items-center px-4 py-3 border-b border-yellow-500/10">
+            <div class="flex space-x-1">
+                <button onclick="switchMemoTab('checklist')" id="tab-checklist" class="tab-btn px-3 py-1 rounded-t-lg text-sm font-bold active">체크리스트</button>
+                <button onclick="switchMemoTab('free')" id="tab-free" class="tab-btn px-3 py-1 rounded-t-lg text-sm font-bold">자유 메모</button>
+            </div>
+            <button onclick="toggleMemo()" class="text-slate-500 hover:text-slate-800 ml-2"><i class="fa-solid fa-xmark text-lg"></i></button>
         </div>
-        <p class="text-xs text-slate-400 mb-4">*작성하신 내용은 고객님의 기기에만 저장됩니다.</p>
-        <textarea id="travel-memo" class="w-full h-48 p-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-ocean/50 text-sm mb-4" placeholder="여행 준비물이나 기억해야 할 내용을 자유롭게 적어보세요!"></textarea>
-        <button onclick="saveMemo()" class="w-full bg-navy text-white py-3 rounded-xl font-bold hover:bg-slate-800 transition">메모 저장하기</button>
+        
+        <!-- Tab Content: Checklist -->
+        <div id="content-checklist" class="p-4 h-64 overflow-y-auto">
+            <div class="space-y-3 font-hand text-xl text-slate-800">
+                <!-- Checklist Items -->
+                <label class="flex items-center gap-3 cursor-pointer strikethrough-checked hover:bg-yellow-100/50 p-1 rounded transition">
+                    <div class="custom-checkbox relative w-5 h-5 flex-shrink-0">
+                        <input type="checkbox" class="absolute opacity-0 w-full h-full cursor-pointer" onchange="saveChecklist(this, 'passport')">
+                        <div class="w-5 h-5 border-2 border-slate-400 rounded bg-white transition-colors duration-200"></div>
+                    </div>
+                    <span>여권 (유효기간 확인)</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer strikethrough-checked hover:bg-yellow-100/50 p-1 rounded transition">
+                    <div class="custom-checkbox relative w-5 h-5 flex-shrink-0">
+                        <input type="checkbox" class="absolute opacity-0 w-full h-full cursor-pointer" onchange="saveChecklist(this, 'adapter')">
+                        <div class="w-5 h-5 border-2 border-slate-400 rounded bg-white transition-colors duration-200"></div>
+                    </div>
+                    <span class="text-red-600 font-bold">110V 돼지코 (필수)</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer strikethrough-checked hover:bg-yellow-100/50 p-1 rounded transition">
+                    <div class="custom-checkbox relative w-5 h-5 flex-shrink-0">
+                        <input type="checkbox" class="absolute opacity-0 w-full h-full cursor-pointer" onchange="saveChecklist(this, 'money')">
+                        <div class="w-5 h-5 border-2 border-slate-400 rounded bg-white transition-colors duration-200"></div>
+                    </div>
+                    <span>엔화 환전 & 지갑</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer strikethrough-checked hover:bg-yellow-100/50 p-1 rounded transition">
+                    <div class="custom-checkbox relative w-5 h-5 flex-shrink-0">
+                        <input type="checkbox" class="absolute opacity-0 w-full h-full cursor-pointer" onchange="saveChecklist(this, 'data')">
+                        <div class="w-5 h-5 border-2 border-slate-400 rounded bg-white transition-colors duration-200"></div>
+                    </div>
+                    <span>로밍/유심/와이파이</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer strikethrough-checked hover:bg-yellow-100/50 p-1 rounded transition">
+                    <div class="custom-checkbox relative w-5 h-5 flex-shrink-0">
+                        <input type="checkbox" class="absolute opacity-0 w-full h-full cursor-pointer" onchange="saveChecklist(this, 'medicine')">
+                        <div class="w-5 h-5 border-2 border-slate-400 rounded bg-white transition-colors duration-200"></div>
+                    </div>
+                    <span>상비약 (소화제/개인약)</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer strikethrough-checked hover:bg-yellow-100/50 p-1 rounded transition">
+                    <div class="custom-checkbox relative w-5 h-5 flex-shrink-0">
+                        <input type="checkbox" class="absolute opacity-0 w-full h-full cursor-pointer" onchange="saveChecklist(this, 'shoes')">
+                        <div class="w-5 h-5 border-2 border-slate-400 rounded bg-white transition-colors duration-200"></div>
+                    </div>
+                    <span>편한 신발 & 작은 가방</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer strikethrough-checked hover:bg-yellow-100/50 p-1 rounded transition">
+                    <div class="custom-checkbox relative w-5 h-5 flex-shrink-0">
+                        <input type="checkbox" class="absolute opacity-0 w-full h-full cursor-pointer" onchange="saveChecklist(this, 'charger')">
+                        <div class="w-5 h-5 border-2 border-slate-400 rounded bg-white transition-colors duration-200"></div>
+                    </div>
+                    <span>충전기 & 보조배터리</span>
+                </label>
+                <label class="flex items-center gap-3 cursor-pointer strikethrough-checked hover:bg-yellow-100/50 p-1 rounded transition">
+                    <div class="custom-checkbox relative w-5 h-5 flex-shrink-0">
+                        <input type="checkbox" class="absolute opacity-0 w-full h-full cursor-pointer" onchange="saveChecklist(this, 'clothes')">
+                        <div class="w-5 h-5 border-2 border-slate-400 rounded bg-white transition-colors duration-200"></div>
+                    </div>
+                    <span>3월 옷차림 (얇은 겉옷)</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Tab Content: Free Memo -->
+        <div id="content-free" class="p-4 hidden">
+             <textarea id="travel-memo" class="w-full h-64 bg-transparent resize-none focus:outline-none font-hand text-xl text-slate-700 leading-6 paper-lines" placeholder="추가로 기억할 내용을 자유롭게 적어보세요."></textarea>
+        </div>
+        
+        <div class="p-3 bg-yellow-200/50 text-center">
+            <span class="text-xs font-bold text-slate-500 flex items-center justify-center gap-1 w-full">
+                <i class="fa-solid fa-cloud-arrow-up"></i> 작성 내용은 자동 저장됩니다
+            </span>
+        </div>
     </div>
 
     <footer class="bg-slate-900 text-slate-500 py-12 text-center text-sm">
         <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHfgIX70O5k6Anuo0UgALIdaG9jSga9auHu3uyz0uEirylGPAJnjN_qQbvEGMUvPqUQf_g9FMNUHRxlDcUBf4vZ3Mpy4TnA9WxbmzWYK11gt2zuy_Irl4wctNFjcjLyPo0GPXV792o_J7L9guRMuDfeC1gy7USwywjYbECZgzcsHybuGRRAXAnO1eNmP8/s320/logo.png" alt="Tourmaker" class="h-8 mx-auto mb-6 opacity-30 grayscale">
-        <p>(주)투어메이커 | 대표: 이재명 | 연락처: 010-9443-7881</p>
-        <p class="mt-4">&copy; 2026 Tourmaker. All Rights Reserved.</p>
+        
+        <p class="text-slate-400 mb-4 pb-4 border-b border-slate-800 max-w-lg mx-auto leading-relaxed">
+            이 스마트가이드북은 여담누리투어와 전략적 제휴를 맺은<br>
+            <span class="text-slate-300 font-bold">투어메이커</span>에서 제작 배포합니다.
+        </p>
+
+        <p class="mb-2 font-bold text-slate-400">(주)투어메이커</p>
+        <p>담당자: 이원춘 | 연락처: 010-5373-7223</p>
+        <p class="mt-4 text-xs opacity-50">&copy; 2026 Tourmaker. All Rights Reserved.</p>
     </footer>
 
     <script>
@@ -323,23 +524,52 @@
         }
         updateDDay();
 
-        // Memo Logic
+        // Memo & Checklist Logic
         function toggleMemo() {
             document.getElementById('memo-panel').classList.toggle('open');
         }
 
-        function saveMemo() {
-            const content = document.getElementById('travel-memo').value;
-            localStorage.setItem('kyushu_travel_memo', content);
-            alert('메모가 저장되었습니다!');
-            toggleMemo();
+        // Tab Switching
+        function switchMemoTab(tabName) {
+            // UI Update
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+            
+            // Content Update
+            document.getElementById('content-checklist').classList.add('hidden');
+            document.getElementById('content-free').classList.add('hidden');
+            document.getElementById(`content-${tabName}`).classList.remove('hidden');
         }
 
-        function loadMemo() {
-            const saved = localStorage.getItem('kyushu_travel_memo');
-            if (saved) document.getElementById('travel-memo').value = saved;
+        // Auto Save (Free Memo)
+        document.getElementById('travel-memo').addEventListener('input', function() {
+            localStorage.setItem('kyushu_travel_memo', this.value);
+        });
+
+        // Save Checklist
+        function saveChecklist(checkbox, id) {
+            let checklistState = JSON.parse(localStorage.getItem('kyushu_checklist_state')) || {};
+            checklistState[id] = checkbox.checked;
+            localStorage.setItem('kyushu_checklist_state', JSON.stringify(checklistState));
         }
-        loadMemo();
+
+        // Load Data
+        function loadMemoData() {
+            // Load Free Memo
+            const savedMemo = localStorage.getItem('kyushu_travel_memo');
+            if (savedMemo) document.getElementById('travel-memo').value = savedMemo;
+
+            // Load Checklist
+            const savedChecklist = JSON.parse(localStorage.getItem('kyushu_checklist_state')) || {};
+            for (const [id, isChecked] of Object.entries(savedChecklist)) {
+                // Find input with matching onclick handler id (simple mapping)
+                const inputs = document.querySelectorAll(`input[onchange*="'${id}'"]`);
+                if (inputs.length > 0) {
+                    inputs[0].checked = isChecked;
+                }
+            }
+        }
+        loadMemoData();
 
         // Schedule Data & Rendering (BX 북큐슈 3박 4일 일정 반영)
         const scheduleData = {

@@ -6,6 +6,7 @@
     <title>VIP 초청: 북큐슈 3박 4일 온천 & 힐링 투어</title>
     
     <!-- Google Analytics (GA4) -->
+    <!-- 실제 운영 시 G-PFXXXXXX 부분을 발급받은 실제 ID로 교체하십시오 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PFXXXXXX"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -18,6 +19,7 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="[VIP] 북큐슈 3박 4일 프라이빗 힐링 투어">
     <meta property="og:description" content="유후인, 벳부 온천과 아소의 대자연을 만나는 힐링 여행">
+    <!-- 대표 이미지는 가능한 자체 호스팅을 권장합니다 -->
     <meta property="og:image" content="https://www.luxurylifestylemag.co.uk/wp-content/uploads/2022/08/Mt-Daisen-Takeda-City-Oita-Azalea.jpg">
     
     <!-- Tailwind CSS -->
@@ -137,6 +139,27 @@
         .custom-scroll::-webkit-scrollbar-thumb:hover {
             background: rgba(0,0,0,0.2);
         }
+
+        /* Tab Styles with ARIA focus states */
+        .tab-btn.active {
+            background-color: #fef9c3; /* Post-it Yellow */
+            border-bottom: 4px solid #eab308;
+            color: #1e293b;
+            font-weight: 800;
+        }
+        .tab-btn {
+            background-color: #f8fafc;
+            color: #64748b;
+        }
+        
+        /* Attention Animation */
+        @keyframes subtle-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+        .animate-attention {
+            animation: subtle-bounce 2s infinite ease-in-out;
+        }
     </style>
 </head>
 <body class="bg-slate-50">
@@ -154,7 +177,7 @@
                 <a href="#guide" class="text-sm font-bold text-slate-600 hover:text-[#0077be] transition">GUIDE</a>
             </nav>
             <a href="tel:01053737223" class="bg-navy text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg flex items-center gap-2 hover:bg-slate-700 transition">
-                <i class="fa-solid fa-phone"></i> 이원춘 담당자 문의
+                <i class="fa-solid fa-phone"></i> 상담 전담 연결
             </a>
         </div>
     </header>
@@ -164,6 +187,7 @@
         <section class="hero-section text-white">
             <div class="container mx-auto px-4 text-center z-10 animate-up">
                 <div class="mb-6">
+                    <!-- D-Day with specific criteria -->
                     <span id="d-day-tag" class="bg-red-600 text-white px-6 py-2 rounded-full text-xl font-black shadow-lg">D-DAY 계산중...</span>
                 </div>
                 <span class="inline-block border border-white/30 bg-white/10 backdrop-blur px-4 py-1 rounded-full text-xs font-bold tracking-widest mb-6 uppercase">Tourmaker Private Collection</span>
@@ -176,8 +200,9 @@
                     2026년 3월 5일, 큐슈의 봄이 시작되는 곳으로.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center gap-4 mt-8">
-                    <a href="#schedule" class="bg-ocean text-white px-8 py-4 rounded-sm font-bold text-lg hover:bg-blue-700 transition shadow-xl">일정 확인하기</a>
-                    <a href="#hotel" class="bg-transparent border border-white text-white px-8 py-4 rounded-sm font-bold text-lg hover:bg-white hover:text-navy transition">호텔&온천 상세보기</a>
+                    <!-- Increased touch target size for accessibility -->
+                    <a href="#schedule" class="bg-ocean text-white px-8 py-5 rounded-sm font-bold text-lg hover:bg-blue-700 transition shadow-xl min-w-[200px]">일정 확인하기</a>
+                    <a href="#hotel" class="bg-transparent border border-white text-white px-8 py-5 rounded-sm font-bold text-lg hover:bg-white hover:text-navy transition min-w-[200px]">호텔&온천 상세보기</a>
                 </div>
             </div>
             <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
@@ -218,7 +243,7 @@
             </div>
         </section>
 
-        <!-- Stay Showcase (상세 정보 업데이트) -->
+        <!-- Stay Showcase -->
         <section id="hotel" class="py-24 bg-navy text-white relative overflow-hidden">
             <div class="container mx-auto px-4 relative z-10">
                 <div class="text-center mb-16">
@@ -292,10 +317,12 @@
             <div class="container mx-auto px-4 max-w-7xl">
                 <div class="text-center mb-16">
                     <h2 class="text-3xl md:text-4xl font-black text-slate-900 mb-4">ITINERARY</h2>
-                    <p class="text-slate-600 font-medium">3박 4일간의 북큐슈 완벽 일주</p>
+                    <p class="text-slate-600 font-medium mb-2">3박 4일간의 북큐슈 완벽 일주 (현지 기준)</p>
+                    <p class="text-xs text-slate-400">* 상기 일정은 항공 및 현지 사정에 의하여 다소 변경 될 수 있습니다.</p>
                 </div>
+                <!-- Added role="tablist" for accessibility -->
                 <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
-                    <div class="flex overflow-x-auto border-b border-slate-100 no-scrollbar" id="dayTabs"></div>
+                    <div class="flex overflow-x-auto border-b border-slate-100 no-scrollbar" id="dayTabs" role="tablist"></div>
                     <div id="scheduleContent" class="p-6 md:p-12 min-h-[400px]"></div>
                 </div>
             </div>
@@ -347,45 +374,72 @@
         <section class="py-20 bg-[#f8f5f0]">
             <div class="container mx-auto px-4 text-center">
                 <h2 class="text-3xl font-black text-slate-900 mb-8">Reservation & Contact</h2>
-                <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-8 items-center justify-center">
+                
+                <!-- 1분 요약 & 하이라이트 아이콘 (마케팅 포인트) -->
+                <div class="mb-10 text-slate-600">
+                    <p class="text-lg font-bold mb-6">"온천 3박 + 대자연 2포인트 + 후쿠오카 핵심 1일, 16명 단독 전용차량"</p>
+                    <div class="flex justify-center gap-6 md:gap-12">
+                        <div class="flex flex-col items-center gap-2">
+                            <div class="w-12 h-12 rounded-full bg-ocean/10 flex items-center justify-center text-ocean text-xl"><i class="fa-solid fa-hot-tub-person"></i></div>
+                            <span class="text-xs font-bold">전 일정 온천</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-2">
+                            <div class="w-12 h-12 rounded-full bg-ocean/10 flex items-center justify-center text-ocean text-xl"><i class="fa-solid fa-van-shuttle"></i></div>
+                            <span class="text-xs font-bold">단독 중형차량</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-2">
+                            <div class="w-12 h-12 rounded-full bg-ocean/10 flex items-center justify-center text-ocean text-xl"><i class="fa-solid fa-bag-shopping"></i></div>
+                            <span class="text-xs font-bold">면세점 1회</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-8 items-stretch justify-center">
                     
                     <!-- 여행 정보 요약 -->
-                    <div class="w-full md:w-1/2 bg-white p-8 rounded-xl shadow-lg border-l-4 border-ocean text-left">
-                        <h3 class="font-bold text-xl mb-6 text-slate-800">📌 여행 핵심 정보</h3>
-                        <div class="space-y-4 text-sm">
-                            <div class="flex justify-between border-b border-slate-100 pb-2">
-                                <span class="text-slate-500">출발일</span>
-                                <span class="font-bold text-slate-900">2026년 3월 5일 (목)</span>
-                            </div>
-                            <div class="flex justify-between border-b border-slate-100 pb-2">
-                                <span class="text-slate-500">항공편</span>
-                                <span class="font-bold text-slate-900">이스타항공 (ZE) 인천 출발</span>
-                            </div>
-                            <div class="flex justify-between border-b border-slate-100 pb-2">
-                                <span class="text-slate-500">인원</span>
-                                <span class="font-bold text-slate-900">16명 단독 VIP 프라이빗</span>
+                    <div class="w-full md:w-1/2 bg-white p-8 rounded-xl shadow-lg border-l-4 border-ocean text-left flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-xl mb-6 text-slate-800">📌 여행 핵심 정보</h3>
+                            <div class="space-y-4 text-sm">
+                                <div class="flex justify-between border-b border-slate-100 pb-2">
+                                    <span class="text-slate-500">출발일</span>
+                                    <span class="font-bold text-slate-900">2026년 3월 5일 (목)</span>
+                                </div>
+                                <div class="flex justify-between border-b border-slate-100 pb-2">
+                                    <span class="text-slate-500">항공편</span>
+                                    <span class="font-bold text-slate-900">에어부산 (BX) 인천 출발</span>
+                                </div>
+                                <div class="flex justify-between border-b border-slate-100 pb-2">
+                                    <span class="text-slate-500">인원</span>
+                                    <span class="font-bold text-slate-900">16명 단독 VIP 프라이빗</span>
+                                </div>
                             </div>
                         </div>
-                        <!-- Disclaimer Added Here -->
-                        <p class="mt-6 text-xs text-slate-400 leading-relaxed border-t border-slate-100 pt-4">
-                            * 상기 일정은 항공 및 현지 사정에 의하여 다소 변경 될 수 있습니다.
-                        </p>
+                        
+                        <!-- 필수 고지 사항 (신뢰 강화) -->
+                        <div class="mt-6 pt-4 border-t border-slate-100 bg-slate-50 p-4 rounded text-xs text-slate-500 leading-relaxed">
+                            <ul class="list-disc pl-4 space-y-1">
+                                <li><strong>포함:</strong> 항공료(유류/텍스), 호텔(2인1실), 전 일정 식사/차량/가이드, 입장료</li>
+                                <li><strong>불포함:</strong> 개인 경비, 매너팁</li>
+                                <li><strong>유의사항:</strong> 일본 온천은 문신/타투가 있을 경우 입장이 제한될 수 있습니다.</li>
+                            </ul>
+                        </div>
                     </div>
 
                     <!-- 담당자 명함 -->
-                    <div class="w-full md:w-1/2 bg-navy p-8 rounded-xl shadow-lg text-white text-left relative overflow-hidden group">
+                    <div class="w-full md:w-1/2 bg-navy p-8 rounded-xl shadow-lg text-white text-left relative overflow-hidden group flex flex-col justify-center">
                         <div class="absolute top-0 right-0 p-4 opacity-10">
                             <i class="fa-solid fa-passport text-9xl"></i>
                         </div>
-                        <p class="text-cyan-400 font-bold text-xs uppercase tracking-widest mb-2">Travel Specialist</p>
-                        <h3 class="text-3xl font-black mb-1">이원춘 <span class="text-lg font-normal text-slate-400">담당자</span></h3>
-                        <p class="text-slate-400 text-sm mb-6">VIP 투어 기획 및 상담 전담</p>
+                        <p class="text-cyan-400 font-bold text-xs uppercase tracking-widest mb-2">Reservation Specialist</p>
+                        <h3 class="text-3xl font-black mb-1">이원춘 <span class="text-lg font-normal text-slate-400">이사</span></h3>
+                        <p class="text-slate-400 text-sm mb-8">투어메이커 예약/상담 전담</p>
                         
-                        <div class="space-y-3">
-                            <a href="tel:01053737223" class="block bg-white text-navy font-bold py-3 px-4 rounded-lg text-center hover:bg-ocean hover:text-white transition shadow-md">
-                                <i class="fa-solid fa-phone mr-2"></i> 010-5373-7223 (전화연결)
+                        <div class="space-y-3 relative z-10">
+                            <a href="tel:01053737223" class="block bg-white text-navy font-bold py-4 px-4 rounded-lg text-center hover:bg-ocean hover:text-white transition shadow-md">
+                                <i class="fa-solid fa-phone mr-2"></i> 010-5373-7223 (직통)
                             </a>
-                            <a href="sms:01053737223" class="block border border-white/30 text-white font-medium py-3 px-4 rounded-lg text-center hover:bg-white/10 transition">
+                            <a href="sms:01053737223" class="block border border-white/30 text-white font-medium py-4 px-4 rounded-lg text-center hover:bg-white/10 transition">
                                 <i class="fa-solid fa-comment-sms mr-2"></i> 문자 문의하기
                             </a>
                         </div>
@@ -398,9 +452,13 @@
 
     <!-- Floating Memo UI (Left Side) -->
     <div class="fixed bottom-6 left-6 z-[60]">
-        <button onclick="toggleMemo()" class="group flex items-center justify-center gap-2 bg-yellow-400 text-slate-900 px-6 py-4 rounded-full shadow-2xl hover:bg-yellow-300 transition hover:-translate-y-1 font-bold border-4 border-white">
+        <button onclick="toggleMemo()" class="animate-attention group flex items-center justify-center gap-2 bg-yellow-400 text-slate-900 px-6 py-4 rounded-full shadow-2xl hover:bg-yellow-300 transition hover:-translate-y-1 font-bold border-4 border-white relative">
             <i class="fa-solid fa-pen-to-square text-xl"></i>
             <span>여행 메모</span>
+            <span class="absolute -top-1 -right-1 flex h-4 w-4">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-4 w-4 bg-red-500 text-[8px] text-white items-center justify-center">N</span>
+            </span>
         </button>
     </div>
 
@@ -424,56 +482,56 @@
                 <div class="space-y-3 font-hand text-xl text-slate-800">
                     <label class="flex items-start gap-3 cursor-pointer strikethrough-checked hover:bg-yellow-100/50 p-1 rounded transition">
                         <div class="custom-checkbox relative w-5 h-5 flex-shrink-0 mt-1">
-                            <input type="checkbox" class="absolute opacity-0 w-full h-full cursor-pointer" onchange="saveChecklist(this, 'passport')">
+                            <input type="checkbox" class="absolute opacity-0 w-full h-full cursor-pointer" data-check="passport" onchange="saveChecklist(this)">
                             <div class="w-5 h-5 border-2 border-slate-400 rounded bg-white transition-colors duration-200"></div>
                         </div>
                         <span class="leading-relaxed">여권 (유효기간 확인)</span>
                     </label>
                     <label class="flex items-start gap-3 cursor-pointer strikethrough-checked hover:bg-yellow-100/50 p-1 rounded transition">
                         <div class="custom-checkbox relative w-5 h-5 flex-shrink-0 mt-1">
-                            <input type="checkbox" class="absolute opacity-0 w-full h-full cursor-pointer" onchange="saveChecklist(this, 'adapter')">
+                            <input type="checkbox" class="absolute opacity-0 w-full h-full cursor-pointer" data-check="adapter" onchange="saveChecklist(this)">
                             <div class="w-5 h-5 border-2 border-slate-400 rounded bg-white transition-colors duration-200"></div>
                         </div>
                         <span class="text-red-600 font-bold leading-relaxed">110V 돼지코 (필수)</span>
                     </label>
                     <label class="flex items-start gap-3 cursor-pointer strikethrough-checked hover:bg-yellow-100/50 p-1 rounded transition">
                         <div class="custom-checkbox relative w-5 h-5 flex-shrink-0 mt-1">
-                            <input type="checkbox" class="absolute opacity-0 w-full h-full cursor-pointer" onchange="saveChecklist(this, 'money')">
+                            <input type="checkbox" class="absolute opacity-0 w-full h-full cursor-pointer" data-check="money" onchange="saveChecklist(this)">
                             <div class="w-5 h-5 border-2 border-slate-400 rounded bg-white transition-colors duration-200"></div>
                         </div>
                         <span class="leading-relaxed">엔화 환전 & 지갑</span>
                     </label>
                     <label class="flex items-start gap-3 cursor-pointer strikethrough-checked hover:bg-yellow-100/50 p-1 rounded transition">
                         <div class="custom-checkbox relative w-5 h-5 flex-shrink-0 mt-1">
-                            <input type="checkbox" class="absolute opacity-0 w-full h-full cursor-pointer" onchange="saveChecklist(this, 'data')">
+                            <input type="checkbox" class="absolute opacity-0 w-full h-full cursor-pointer" data-check="data" onchange="saveChecklist(this)">
                             <div class="w-5 h-5 border-2 border-slate-400 rounded bg-white transition-colors duration-200"></div>
                         </div>
                         <span class="leading-relaxed">로밍/유심/와이파이</span>
                     </label>
                     <label class="flex items-start gap-3 cursor-pointer strikethrough-checked hover:bg-yellow-100/50 p-1 rounded transition">
                         <div class="custom-checkbox relative w-5 h-5 flex-shrink-0 mt-1">
-                            <input type="checkbox" class="absolute opacity-0 w-full h-full cursor-pointer" onchange="saveChecklist(this, 'medicine')">
+                            <input type="checkbox" class="absolute opacity-0 w-full h-full cursor-pointer" data-check="medicine" onchange="saveChecklist(this)">
                             <div class="w-5 h-5 border-2 border-slate-400 rounded bg-white transition-colors duration-200"></div>
                         </div>
                         <span class="leading-relaxed">상비약 (소화제/개인약)</span>
                     </label>
                     <label class="flex items-start gap-3 cursor-pointer strikethrough-checked hover:bg-yellow-100/50 p-1 rounded transition">
                         <div class="custom-checkbox relative w-5 h-5 flex-shrink-0 mt-1">
-                            <input type="checkbox" class="absolute opacity-0 w-full h-full cursor-pointer" onchange="saveChecklist(this, 'shoes')">
+                            <input type="checkbox" class="absolute opacity-0 w-full h-full cursor-pointer" data-check="shoes" onchange="saveChecklist(this)">
                             <div class="w-5 h-5 border-2 border-slate-400 rounded bg-white transition-colors duration-200"></div>
                         </div>
                         <span class="leading-relaxed">편한 신발 & 작은 가방</span>
                     </label>
                     <label class="flex items-start gap-3 cursor-pointer strikethrough-checked hover:bg-yellow-100/50 p-1 rounded transition">
                         <div class="custom-checkbox relative w-5 h-5 flex-shrink-0 mt-1">
-                            <input type="checkbox" class="absolute opacity-0 w-full h-full cursor-pointer" onchange="saveChecklist(this, 'charger')">
+                            <input type="checkbox" class="absolute opacity-0 w-full h-full cursor-pointer" data-check="charger" onchange="saveChecklist(this)">
                             <div class="w-5 h-5 border-2 border-slate-400 rounded bg-white transition-colors duration-200"></div>
                         </div>
                         <span class="leading-relaxed">충전기 & 보조배터리</span>
                     </label>
                     <label class="flex items-start gap-3 cursor-pointer strikethrough-checked hover:bg-yellow-100/50 p-1 rounded transition">
                         <div class="custom-checkbox relative w-5 h-5 flex-shrink-0 mt-1">
-                            <input type="checkbox" class="absolute opacity-0 w-full h-full cursor-pointer" onchange="saveChecklist(this, 'clothes')">
+                            <input type="checkbox" class="absolute opacity-0 w-full h-full cursor-pointer" data-check="clothes" onchange="saveChecklist(this)">
                             <div class="w-5 h-5 border-2 border-slate-400 rounded bg-white transition-colors duration-200"></div>
                         </div>
                         <span class="leading-relaxed">3월 옷차림 (얇은 겉옷)</span>
@@ -505,13 +563,19 @@
         </p>
 
         <p class="mb-2 font-bold text-slate-400">(주)투어메이커</p>
-        <p>담당자: 이원춘 | 연락처: 010-5373-7223</p>
+        <p>예약/상담 전담: 이원춘 이사 | 연락처: 010-5373-7223</p>
         <p class="mt-4 text-xs opacity-50">&copy; 2026 Tourmaker. All Rights Reserved.</p>
     </footer>
 
     <script>
-        // D-Day Logic (2026년 3월 5일 기준)
-        const targetDate = new Date('2026-03-05T00:00:00');
+        // Event Constants (LocalStorage Namespace)
+        const EVENT_KEY = "kyushu_vip_20260305";
+
+        // D-Day Logic (Strict KST Calculation)
+        // 2026-03-05 00:00:00 KST = UTC+9
+        // ISO string for specific offset ensures consistency across timezones
+        const targetDate = new Date('2026-03-05T00:00:00+09:00');
+        
         function updateDDay() {
             const now = new Date();
             const diff = targetDate - now;
@@ -519,7 +583,7 @@
             const dDayTag = document.getElementById('d-day-tag');
             
             if (days > 0) {
-                dDayTag.innerText = `D-${days} 남았습니다`;
+                dDayTag.innerText = `D-${days} 남았습니다 (KST 기준)`;
             } else if (days === 0) {
                 dDayTag.innerText = `TODAY: 여행 당일!`;
                 dDayTag.classList.replace('bg-red-600', 'bg-blue-600');
@@ -533,44 +597,48 @@
         // Memo & Checklist Logic
         function toggleMemo() {
             document.getElementById('memo-panel').classList.toggle('open');
+            // Remove attention animation after first click
+            document.querySelector('.animate-attention')?.classList.remove('animate-attention');
         }
 
-        // Auto Save (Free Memo)
+        // Auto Save (Free Memo with Namespace)
         document.getElementById('travel-memo').addEventListener('input', function() {
-            localStorage.setItem('kyushu_travel_memo', this.value);
+            localStorage.setItem(`${EVENT_KEY}_memo`, this.value);
         });
 
-        // Save Checklist
-        function saveChecklist(checkbox, id) {
-            let checklistState = JSON.parse(localStorage.getItem('kyushu_checklist_state')) || {};
-            checklistState[id] = checkbox.checked;
-            localStorage.setItem('kyushu_checklist_state', JSON.stringify(checklistState));
+        // Save Checklist (Data Attribute Based)
+        function saveChecklist(checkbox) {
+            const id = checkbox.dataset.check;
+            const key = `${EVENT_KEY}_checklist`;
+            const state = JSON.parse(localStorage.getItem(key)) || {};
+            state[id] = checkbox.checked;
+            localStorage.setItem(key, JSON.stringify(state));
         }
 
-        // Load Data
+        // Load Data (Namespace & Data Attribute)
         function loadMemoData() {
             // Load Free Memo
-            const savedMemo = localStorage.getItem('kyushu_travel_memo');
+            const savedMemo = localStorage.getItem(`${EVENT_KEY}_memo`);
             if (savedMemo) document.getElementById('travel-memo').value = savedMemo;
 
             // Load Checklist
-            const savedChecklist = JSON.parse(localStorage.getItem('kyushu_checklist_state')) || {};
+            const savedChecklist = JSON.parse(localStorage.getItem(`${EVENT_KEY}_checklist`)) || {};
             for (const [id, isChecked] of Object.entries(savedChecklist)) {
-                // Find input with matching onclick handler id (simple mapping)
-                const inputs = document.querySelectorAll(`input[onchange*="'${id}'"]`);
-                if (inputs.length > 0) {
-                    inputs[0].checked = isChecked;
+                // Selector using data attribute for stability
+                const input = document.querySelector(`input[data-check="${id}"]`);
+                if (input) {
+                    input.checked = isChecked;
                 }
             }
         }
         loadMemoData();
 
-        // Schedule Data & Rendering (BX 북큐슈 3박 4일 일정 반영)
+        // Schedule Data & Rendering (Unified Airline Info: Air Busan BX)
         const scheduleData = {
             day1: {
                 title: "역사의 숨결, 다자이후", date: "3/05 (목)",
                 items: [
-                    { time: "07:15", title: "인천 출발 (BX156)", desc: "설레는 마음을 안고 후쿠오카로 출발" },
+                    { time: "07:15", title: "인천 출발 (BX156)", desc: "설레는 마음을 안고 후쿠오카로 출발 (에어부산)" },
                     { time: "08:55", title: "후쿠오카 도착", desc: "가이드 미팅 및 전용 차량 탑승" },
                     { time: "오전", title: "다자이후 텐만구", desc: "학문의 신을 모신 신사, 명물 우메가에모찌 시식" },
                     { time: "오후", title: "히타 마메다마치", desc: "'큐슈의 작은 교토'라 불리는 전통 거리 산책" },
@@ -602,7 +670,7 @@
                 title: "다음을 기약하며", date: "3/08 (일)",
                 items: [
                     { time: "08:00", title: "공항 이동", desc: "호텔 조식 후 후쿠오카 공항으로 이동" },
-                    { time: "10:00", title: "후쿠오카 출발 (BX155)", desc: "아쉬움을 뒤로하고 인천으로" },
+                    { time: "10:00", title: "후쿠오카 출발 (BX155)", desc: "아쉬움을 뒤로하고 인천으로 (에어부산)" },
                     { time: "11:45", title: "인천 도착", desc: "안녕히 가십시오" }
                 ]
             }
@@ -618,7 +686,7 @@
         function renderTabs() {
             const container = document.getElementById('dayTabs');
             container.innerHTML = Object.entries(scheduleData).map(([key, data]) => `
-                <button onclick="switchDay('${key}')" class="flex-1 px-4 py-4 text-sm font-bold transition-colors ${key === currentDay ? 'border-b-4 border-ocean text-slate-900 bg-slate-50' : 'text-slate-400 hover:bg-slate-50'}">
+                <button onclick="switchDay('${key}')" role="tab" aria-selected="${key === currentDay}" class="flex-1 px-4 py-4 text-sm font-bold transition-colors ${key === currentDay ? 'border-b-4 border-ocean text-slate-900 bg-slate-50' : 'text-slate-400 hover:bg-slate-50'}">
                     <span class="block text-xs mb-1 font-normal">${data.date}</span>
                     DAY ${key.slice(3)}
                 </button>
